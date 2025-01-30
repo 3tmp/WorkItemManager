@@ -9,6 +9,7 @@
 #Include Lib\OnMessageListener.ahk
 #Include Lib\WinApi.ahk
 
+#Include TfsRemoteManager.ahk
 #Include WorkItem.ahk
 #Include WorkItemManager.ahk
 #Include WorkItemStatus.ahk
@@ -37,7 +38,8 @@ A_TrayMenu.Add("Beenden", (*) => ExitApp())
 TraySetIcon("imageres.dll", 8)
 
 
-manager := WorkItemManager(A_Desktop "\WI")
+remoteManager := TfsRemoteManager("config.ini")
+manager := WorkItemManager(A_Desktop "\WI", remoteManager)
 workGui := WorkItemGui(manager)
 
 

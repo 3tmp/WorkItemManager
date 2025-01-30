@@ -2,11 +2,12 @@ class WorkItemManager
 {
     static _iniName := "_Info.ini"
     static _iniSectionMain := "WI"
-    
+
+    _remoteManager := ""
     _folderPath := ""
     _items := []
 
-    __New(folderPath)
+    __New(folderPath, remoteManager)
     {
         folderPath := RTrim(folderPath, "\")
 
@@ -15,6 +16,7 @@ class WorkItemManager
             throw ValueError(Format("The path '{}' does not exist.", folderPath))
         }
 
+        this._remoteManager := remoteManager
         this._folderPath := folderPath
         loop files this._folderPath "\*", "D"
         {
