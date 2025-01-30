@@ -15,7 +15,15 @@ class WorkItemGui extends WorkItemGuiBase
         this._ctrlEditWIBtn.OnEvent("Click", (ctrl, info) => this._eventEditWiBtnClick(ctrl, info))
     }
 
-    _eventLvDoubleClick(ctrl, lvIndex) => this._openInExplorer(lvIndex)
+    _eventLvDoubleClick(ctrl, lvIndex)
+    {
+        this._openInExplorer(lvIndex)
+
+        if (!GetKeyState("Shift", "P"))
+        {
+            this.Hide()
+        }
+    }
 
     _eventLvContextMenu(ctrl, lvIndex, isRightClick, x, y)
     {
