@@ -84,6 +84,7 @@ class WorkItemManager
         oldWi := this._items[index]
         newWi := WorkItem(oldWi.Id, oldWi.Sprint, oldWi.Title, newStatus)
         this._items[index] := newWi
+        this.EditWorkItem(newWi)
         return newWi
     }
 
