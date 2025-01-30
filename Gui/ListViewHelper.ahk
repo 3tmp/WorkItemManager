@@ -30,11 +30,11 @@ class ListViewHelper
                 {
                     return -1
                 }
-                if (statusA == WorkItemStatus.Open)
+                if (statusA == WorkItemStatus.Active)
                 {
                     return -1
                 }
-                if (statusB == WorkItemStatus.Open)
+                if (statusB == WorkItemStatus.Active)
                 {
                     return 1
                 }

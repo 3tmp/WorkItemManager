@@ -30,7 +30,7 @@ class AddEditWorkItemGui extends Gui
         this.AddText(, "Sprint")   
         this._ctrlSprintEdit := this.AddEdit("w300", IsSet(wi) ? wi.Sprint : "")
         this.AddText(, "Status")
-        this._ctrlStatusDdl := this.AddDropDownList("w300 Choose" _statusToIndex(IsSet(wi) ? (wi.Status) : WorkItemStatus.Open), WorkItemStatus.Names())
+        this._ctrlStatusDdl := this.AddDropDownList("w300 Choose" _statusToIndex(IsSet(wi) ? (wi.Status) : WorkItemStatus.Active), WorkItemStatus.Names())
 
         this._ctrlOkBtn := this.AddButton("Default", "Ok")
         this._ctrlOkBtn.OnEvent("Click", (ctrl, info) => this._okBtnClick(ctrl, info))

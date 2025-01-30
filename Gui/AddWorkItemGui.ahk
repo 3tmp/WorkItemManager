@@ -23,7 +23,7 @@ class AddWorkItemGui extends AddEditWorkItemGuiBase
             }
         }
 
-        wi := WorkItem(this._ctrlIdEdit.Text, this._ctrlSprintEdit.Text, this._ctrlTitleEdit.Text, WorkItemStatus.Open)
+        wi := WorkItem(this._ctrlIdEdit.Text, this._ctrlSprintEdit.Text, this._ctrlTitleEdit.Text, WorkItemStatus.Active)
         callback := this._callback
         callback(wi)
         this.Destroy()
