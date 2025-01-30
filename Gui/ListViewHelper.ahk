@@ -20,7 +20,7 @@ class ListViewHelper
 
                 if (statusA == statusB)
                 {
-                    return wiA.Id < wiB.Id ? -1 : wiA.Id > wiB.Id ? 1 : 0
+                    return StrCompare(wiA.Id, wiB.Id, "Logical")
                 }
                 if (statusA == WorkItemStatus.Closed)
                 {
