@@ -22,7 +22,7 @@
 ListLines(false)
 KeyHistory(0)
 
-WorkItemManagerVersion() => "1.0.0"
+WorkItemManagerVersion() => "1.0.1"
 
 ; Ini functions can only work with ansi or utf16
 FileEncoding("utf-16")
@@ -42,7 +42,7 @@ workGui := WorkItemGui(manager)
 
 
 ; Focus search bar
-#HotIf WinActive("ahk_id" workGui.Hwnd)
+#HotIf WinActive(workGui.Hwnd)
 ^f::workGui.FocusSearch()
 #HotIf
 
