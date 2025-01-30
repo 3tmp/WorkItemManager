@@ -27,10 +27,6 @@ WorkItemManagerVersion() => "1.0.0"
 ; Ini functions can only work with ansi or utf16
 FileEncoding("utf-16")
 
-manager := WorkItemManager(A_Desktop "\WI")
-workGui := WorkItemGui(manager)
-
-
 A_IconTip := "Work Item Manager"
 A_TrayMenu.Delete()
 A_TrayMenu.Add("Öffne Gui", (*) => workGui.Show())
@@ -38,6 +34,11 @@ A_TrayMenu.Add("Über", (*) => MsgBox(Format("Work Item Manager`nVersion {}", Wo
 A_TrayMenu.Add()
 A_TrayMenu.Add("Neu laden", (*) => Reload())
 A_TrayMenu.Add("Beenden", (*) => ExitApp())
+TraySetIcon("imageres.dll", 8)
+
+
+manager := WorkItemManager(A_Desktop "\WI")
+workGui := WorkItemGui(manager)
 
 
 ; Focus search bar
