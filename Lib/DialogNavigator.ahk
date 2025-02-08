@@ -84,12 +84,17 @@ class DialogNavigator
         ControlSetText(currentText, edit1)
     }
 
-    _getPath()
+    _getPath(classNN := "ToolbarWindow324")
     {
-        try text := std__GetWindowText(DialogNavigator._findControlByClassNN(this._dialog, "ToolbarWindow324"))
+        try text := std__GetWindowText(DialogNavigator._findControlByClassNN(this._dialog, classNN))
         catch
         {
             return ""
+        }
+        ; In case "Symbolleiste: "Adressleiste"" gets returned
+        if (InStr(text, "`"") && classNN == "ToolbarWindow324")
+        {
+            return this._getPath("ToolbarWindow323")
         }
         ; Cut the "Adress: " part in any language
         return RegExReplace(text, "^\w*: ")
