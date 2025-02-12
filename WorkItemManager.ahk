@@ -3,6 +3,7 @@ class WorkItemManager
     static _iniName := "_Info.ini"
     static _iniSectionMain := "WI"
 
+    /** @type {TfsRemoteManager} */
     _remoteManager := ""
     _folderPath := ""
     _items := []
@@ -32,6 +33,8 @@ class WorkItemManager
     GetById(id) => this._getById(id)
 
     GetFolderPathOfWorkItem(wiOrId) => this._folderPath "\" this._getWi(wiOrId).Id
+
+    GetUrlOfWorkItem(wiOrId) => this._remoteManager.UrlFromWorkItem(this._getWi(wiOrId))
 
     AddNewWorkItem(wi)
     {

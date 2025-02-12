@@ -30,6 +30,8 @@ class WorkItemGui extends WorkItemGuiBase
         m := Menu()
         m.Add("Öffne in Explorer", (*) => this._openInExplorer(lvIndex))
         m.SetIcon("1&", "explorer.exe", 1)
+        m.Add("Öffne in Browser", (*) => this._openInBrowser(lvIndex))
+        m.SetIcon("2&", "shell32.dll", 14)
         m.Add("Status", generateStatusSub(lvIndex))
         m.Add("Bearbeiten", (*) => this._contextMenuEditItemCallback(lvIndex))
         m.SetIcon("3&", "comres.dll", 7)
@@ -127,5 +129,11 @@ class WorkItemGui extends WorkItemGuiBase
     {
         id := this._lvIndexToId(lvIndex)
         Run(Format("explorer.exe `"{}`"", this._manager.GetFolderPathOfWorkItem(id)))
+    }
+
+    _openInBrowser(lvIndex)
+    {
+        id := this._lvIndexToId(lvIndex)
+        Run(this._manager.GetUrlOfWorkItem(id))
     }
 }

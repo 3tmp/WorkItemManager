@@ -24,7 +24,7 @@ class TfsRemoteManager
 
     static WriteDefaultConfig(configFile)
     {
-        IniWrite("http://localhost:8080/{}", configFile, "TFS", "Url")
-        IniWrite("my_api_key", configFile, "TFS", "ApiKey")
+        IniWrite("", configFile, "TFS", "Url")
+        IniWrite("", configFile, "TFS", "ApiKey")
     }
 }

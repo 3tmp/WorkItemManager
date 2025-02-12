@@ -9,6 +9,7 @@
 #Include Lib\OnMessageListener.ahk
 #Include Lib\WinApi.ahk
 
+#Include ConfigWriter.ahk
 #Include TfsRemoteManager.ahk
 #Include WorkItem.ahk
 #Include WorkItemManager.ahk
@@ -25,6 +26,9 @@ KeyHistory(0)
 
 WorkItemManagerVersion() => "1.0.1"
 
+CONFIG_FILE := "config.ini"
+WORK_ITEM_PATH := A_Desktop "\WI"
+
 ; Ini functions can only work with ansi or utf16
 FileEncoding("utf-16")
 
@@ -38,8 +42,13 @@ A_TrayMenu.Add("Beenden", (*) => ExitApp())
 TraySetIcon("imageres.dll", 8)
 
 
-remoteManager := TfsRemoteManager("config.ini")
-manager := WorkItemManager(A_Desktop "\WI", remoteManager)
+if (!FileExist(CONFIG_FILE))
+{
+    ConfigManager.WriteDefaultConfig(CONFIG_FILE)
+}
+
+remoteManager := TfsRemoteManager(CONFIG_FILE)
+manager := WorkItemManager(WORK_ITEM_PATH, remoteManager)
 workGui := WorkItemGui(manager)
 
 
