@@ -1,4 +1,4 @@
-class TfsRemoteManager
+class TfsRemoteManager extends IRemoteManager
 {
     _baseUrl := ""
     _apiKey := ""

@@ -19,18 +19,18 @@ class AddEditWorkItemGui extends Gui
         this.OnEvent("Escape", (*) => this._cancel())
 
         this.AddText(, "Id")
-        this._ctrlIdEdit := this.AddEdit("Number w300", IsSet(wi) ? wi.Id : "")
-        if (IsSet(wi))
+        this._ctrlIdEdit := this.AddEdit("Number w300", this._mode == "edit" ? wi.Id : "")
+        if (this._mode == "edit")
         {
             ; Prevent the user from editing the id when in edit mode
             this._ctrlIdEdit.Enabled := false
         }
         this.AddText(, "Titel")
-        this._ctrlTitleEdit := this.AddEdit("w300", IsSet(wi) ? wi.Title : "")
-        this.AddText(, "Sprint")   
-        this._ctrlSprintEdit := this.AddEdit("w300", IsSet(wi) ? wi.Sprint : "")
+        this._ctrlTitleEdit := this.AddEdit("w300", this._mode == "edit" ? wi.Title : "")
+        this.AddText(, "Sprint")
+        this._ctrlSprintEdit := this.AddEdit("w300", this._mode == "edit" ? wi.Sprint : _guessCurrentSprint())
         this.AddText(, "Status")
-        this._ctrlStatusDdl := this.AddDropDownList("w300 Choose" _statusToIndex(IsSet(wi) ? (wi.Status) : WorkItemStatus.Active), WorkItemStatus.Names())
+        this._ctrlStatusDdl := this.AddDropDownList("w300 Choose" _statusToIndex(this._mode == "edit" ? (wi.Status) : WorkItemStatus.Active), WorkItemStatus.Names())
 
         this._ctrlOkBtn := this.AddButton("Default", "Ok")
         this._ctrlOkBtn.OnEvent("Click", (ctrl, info) => this._okBtnClick(ctrl, info))
@@ -46,6 +46,13 @@ class AddEditWorkItemGui extends Gui
             }
             return 1
         }
+
+        _guessCurrentSprint()
+        {
+            week := Integer(SubStr(FormatTime(, "YWeek"), 5))
+            sprint := (week // 2) + 1
+            return Format("{}.{:02}", FormatTime(, "yyyy"), sprint)
+        }
     }
 
     Destroy()
@@ -53,6 +60,8 @@ class AddEditWorkItemGui extends Gui
         this._callback := ""
         super.Destroy()
     }
+
+    _mode => this._wi ? "edit" : "new"
 
     _cancel()
     {
@@ -83,7 +92,7 @@ class AddEditWorkItemGui extends Gui
         status := WorkItemStatus.Parse(this._ctrlStatusDdl.Text)
         wi := WorkItem(this._ctrlIdEdit.Text, this._ctrlSprintEdit.Text, this._ctrlTitleEdit.Text, status)
         callback := this._callback
-        callback(this._wi ? "edit" : "new", wi)
+        callback(this._mode, wi)
         this.Destroy()
     }
 }

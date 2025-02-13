@@ -3,7 +3,7 @@ class WorkItemManager
     static _iniName := "_Info.ini"
     static _iniSectionMain := "WI"
 
-    /** @type {TfsRemoteManager} */
+    /** @type {IRemoteManager} */
     _remoteManager := ""
     _folderPath := ""
     _items := []

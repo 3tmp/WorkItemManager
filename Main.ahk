@@ -10,6 +10,7 @@
 #Include Lib\WinApi.ahk
 
 #Include ConfigWriter.ahk
+#Include IRemoteManager.ahk
 #Include TfsRemoteManager.ahk
 #Include WorkItem.ahk
 #Include WorkItemManager.ahk

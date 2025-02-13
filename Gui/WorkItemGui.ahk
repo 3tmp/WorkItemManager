@@ -34,9 +34,9 @@ class WorkItemGui extends WorkItemGuiBase
         m.SetIcon("2&", "shell32.dll", 14)
         m.Add("Status", generateStatusSub(lvIndex))
         m.Add("Bearbeiten", (*) => this._contextMenuEditItemCallback(lvIndex))
-        m.SetIcon("3&", "comres.dll", 7)
+        m.SetIcon("4&", "comres.dll", 7)
         m.Add("Löschen", (*) => this._eventDeleteWorkItem(lvIndex))
-        m.SetIcon("4&", "imageres.dll", 51)
+        m.SetIcon("5&", "imageres.dll", 51)
         m.Show()
 
         generateStatusSub(lvIndex)
