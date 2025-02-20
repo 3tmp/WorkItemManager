@@ -16,7 +16,15 @@ class SlimWorkItemGui extends WorkItemGuiBase
 
     ; #region Abstract methods
 
-    _eventLvDoubleClick(ctrl, lvIndex) => this._openInParent(lvIndex)
+    _eventLvDoubleClick(ctrl, lvIndex)
+    {
+        if (!lvIndex)
+        {
+            return
+        }
+
+        this._openInParent(lvIndex)
+    }
 
     ; #endregion
 

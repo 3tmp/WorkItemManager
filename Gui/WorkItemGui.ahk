@@ -17,6 +17,11 @@ class WorkItemGui extends WorkItemGuiBase
 
     _eventLvDoubleClick(ctrl, lvIndex)
     {
+        if (!lvIndex)
+        {
+            return
+        }
+
         this._openInExplorer(lvIndex)
 
         if (!GetKeyState("Shift", "P"))

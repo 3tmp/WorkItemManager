@@ -25,7 +25,7 @@
 ListLines(false)
 KeyHistory(0)
 
-WorkItemManagerVersion() => "1.0.1"
+WorkItemManagerVersion() => "1.0.2"
 
 CONFIG_FILE := "config.ini"
 WORK_ITEM_PATH := A_Desktop "\WI"
