@@ -1,6 +1,7 @@
 class WorkItemManager
 {
     static _iniName := "_Info.ini"
+    static _specificationName := "_Specification.txt"
     static _iniSectionMain := "WI"
 
     /** @type {IRemoteManager} */
@@ -32,9 +33,26 @@ class WorkItemManager
 
     GetById(id) => this._getById(id)
 
-    GetFolderPathOfWorkItem(wiOrId) => this._folderPath "\" this._getWi(wiOrId).Id
+    GetFolderPathOfWorkItem(wiOrId) => this._getFolderPath(this._getWi(wiOrId))
 
     GetUrlOfWorkItem(wiOrId) => this._remoteManager.UrlFromWorkItem(this._getWi(wiOrId))
+
+    GetOrCreateSpecificationFile(wiOrId)
+    {
+        wi := this._getWi(wiOrId)
+        if (!(wi is WorkItem))
+        {
+            throw TypeError("wi")
+        }
+
+        specificationPath := this._getFolderPath(wi) "\" WorkItemManager._specificationName
+        if (!FileExist(specificationPath))
+        {
+            FileAppend("", specificationPath, "UTF-8-RAW")
+        }
+
+        return specificationPath
+    }
 
     AddNewWorkItem(wi)
     {
@@ -126,6 +144,8 @@ class WorkItemManager
         IniWrite(wi.Title, file, WorkItemManager._iniSectionMain, "title")
         IniWrite(wi.Status, file, WorkItemManager._iniSectionMain, "status")
     }
+
+    _getFolderPath(wi) => this._folderPath "\" wi.Id
 
     _getWi(wiOrId) => this._getById(wiOrId is WorkItem ? wiOrId.Id : wiOrId)
 

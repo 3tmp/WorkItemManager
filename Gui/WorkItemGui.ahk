@@ -37,11 +37,13 @@ class WorkItemGui extends WorkItemGuiBase
         m.SetIcon("1&", "explorer.exe", 1)
         m.Add("Öffne in Browser", (*) => this._openInBrowser(lvIndex))
         m.SetIcon("2&", "shell32.dll", 14)
+        m.Add("Öffne Spezifikation", (*) => this._openSpecification(lvIndex))
+        m.SetIcon("3&", "imageres.dll", 15)
         m.Add("Status", generateStatusSub(lvIndex))
         m.Add("Bearbeiten", (*) => this._contextMenuEditItemCallback(lvIndex))
-        m.SetIcon("4&", "comres.dll", 7)
+        m.SetIcon("5&", "comres.dll", 7)
         m.Add("Löschen", (*) => this._eventDeleteWorkItem(lvIndex))
-        m.SetIcon("5&", "imageres.dll", 51)
+        m.SetIcon("6&", "imageres.dll", 51)
         m.Show()
 
         generateStatusSub(lvIndex)
@@ -140,5 +142,11 @@ class WorkItemGui extends WorkItemGuiBase
     {
         id := this._lvIndexToId(lvIndex)
         Run(this._manager.GetUrlOfWorkItem(id))
+    }
+
+    _openSpecification(lvIndex)
+    {
+        id := this._lvIndexToId(lvIndex)
+        Run(this._manager.GetOrCreateSpecificationFile(id))
     }
 }
