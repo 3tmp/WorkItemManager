@@ -156,7 +156,7 @@ class WorkItemGuiBase extends Gui
         count := this._ctrlLv.GetCount()
 
         ; Very unlikly, but we can't select a row, because there are none
-        if (count == 0 || !selectedIndex)
+        if (count == 0)
         {
             return
         }
