@@ -33,12 +33,12 @@ class WorkItemGuiBase extends Gui
 
     __buildGui()
     {
-        this._ctrlSearchEdit := this.AddEdit("w530")
+        this._ctrlSearchEdit := this.AddEdit("w545")
         this._ctrlSearchEdit.Placeholder := "Suche nach Work Items..."
         this._ctrlSearchEdit.OnEvent("Change", (ctrl, info) => this.__eventSearchBarChange(ctrl, info))
 
         ; -LV0x10 -> No header reorder
-        this._ctrlLv := this.AddListView("w530 r30 -LV0x10 -Multi", ListViewHelper.Headers)
+        this._ctrlLv := this.AddListView("w545 r30 -LV0x10 -Multi", ListViewHelper.Headers)
         this._ctrlLv.OnEvent("ContextMenu", (ctrl, lvIndex, isRightClick, x, y) => this.__eventLvContextMenu(ctrl, lvIndex, isRightClick, x, y))
         this._ctrlLv.OnEvent("DoubleClick", (ctrl, lvIndex) => this._eventLvDoubleClick(ctrl, lvIndex))
         this._loadLv()
