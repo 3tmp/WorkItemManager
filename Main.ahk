@@ -11,6 +11,7 @@
 
 #Include ConfigWriter.ahk
 #Include IRemoteManager.ahk
+#Include RemoteManagerFactory.ahk
 #Include TfsRemoteManager.ahk
 #Include WorkItem.ahk
 #Include WorkItemManager.ahk
@@ -28,7 +29,6 @@ KeyHistory(0)
 WorkItemManagerVersion() => "1.0.2"
 
 CONFIG_FILE := "config.ini"
-WORK_ITEM_PATH := A_Desktop "\WI"
 
 ; Ini functions can only work with ansi or utf16
 FileEncoding("utf-16")
@@ -42,14 +42,10 @@ A_TrayMenu.Add("Neu laden", (*) => Reload())
 A_TrayMenu.Add("Beenden", (*) => ExitApp())
 TraySetIcon("imageres.dll", 8)
 
+configManager := ConfigurationManager(CONFIG_FILE)
 
-if (!FileExist(CONFIG_FILE))
-{
-    ConfigManager.WriteDefaultConfig(CONFIG_FILE)
-}
-
-remoteManager := TfsRemoteManager(CONFIG_FILE)
-manager := WorkItemManager(WORK_ITEM_PATH, remoteManager)
+remoteManager := RemoteManagerFactory.CreateManager(configManager.RemoteManager, configManager)
+manager := WorkItemManager(configManager.WorkItemPath, remoteManager)
 workGui := WorkItemGui(manager)
 
 
