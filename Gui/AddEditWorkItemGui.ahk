@@ -73,7 +73,7 @@ class AddEditWorkItemGui extends Gui
     _okBtnClick(ctrl, info)
     {
         sprint := this._ctrlSprintEdit.Text
-        if (this._ctrlTitleEdit.Text == "" || (sprint !== "" && !RegExMatch(sprint, "^\d{4}\.\d{2}$")))
+        if (this._ctrlTitleEdit.Text == "" || (sprint !== "" && sprint != "3rd" && !RegExMatch(sprint, "^\d{4}\.\d{2}$")))
         {
             MsgBox("Falsche Werte", "Error", "iconx")
             return
